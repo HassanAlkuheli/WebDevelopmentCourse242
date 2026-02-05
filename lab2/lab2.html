@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Lab 2 - Forms</title>
+</head>
+<body>
+  <form action="enrol.aspx" method="get"> 
+      <input id="nn" name="nn" type="text" placeholder="your name" required>
+      <input id="age" name="age" type="number" placeholder="Age" min="10" max="80" size="2">
+      <br>
+
+
+      <label for="bday">Enter your birthday</label>
+      <input id="bday" name="bday" type="date">
+      <br>
+      <input id="favcolor" name="favcolor" type="color">
+      <br>
+
+
+      <input id="email" name="email" type="email" placeholder="enter email" required>
+      <input id="password" name="password" type="password" required maxlength="6" placeholder="password(6)">
+      <br>
+
+
+      Gender <label><input type="radio" name="gender" value="Male"> Male</label>
+      <label><input type="radio" name="gender" value="Female"> Female</label>
+      <br>
+
+
+      education <select id="education" name="education">
+        <option value="none">none</option>
+        <option value="highschool">high school</option>
+        <option value="university" selected>university</option>
+      </select>
+      <br>
+
+
+      Do you agree <input type="checkbox" name="agree" value="on">
+      <br>
+
+
+
+
+      <button type="submit">enrol now</button>
+  </form>
+
+
+
+</body>
+</html>

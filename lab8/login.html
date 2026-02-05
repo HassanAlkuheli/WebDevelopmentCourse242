@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Remember Me</title>
+    <style>
+        body { font-family: serif; text-align: center; margin-top: 50px; }
+        .login-box { display: inline-block; text-align: left; border: 1px solid #ccc; padding: 20px; }
+        label { display: inline-block; width: 120px; margin-bottom: 10px; font-weight: bold; }
+        input[type="text"], input[type="password"] { width: 150px; border: 2px solid black; }
+        .remember-group { margin-left: 120px; margin-bottom: 10px; }
+        button { margin-left: 120px; padding: 2px 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="login-box">
+        <div>
+            <label>Enter name</label>
+            <input type="text" id="username">
+        </div>
+        <div>
+            <label>Enter password</label>
+            <input type="password" id="password">
+        </div>
+        <div class="remember-group">
+            <label style="width: auto; font-weight: normal;">remember</label>
+            <input type="checkbox" id="rememberMe">
+        </div>
+        <button onclick="login()">send</button>
+    </div>
+
+    <script>
+        // On page load, check local storage
+        window.onload = function() {
+            if (localStorage.getItem("remember") === "true") {
+                document.getElementById("username").value = localStorage.getItem("user");
+                document.getElementById("password").value = localStorage.getItem("pass");
+                document.getElementById("rememberMe").checked = true;
+            }
+        };
+
+        function login() {
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+            const remember = document.getElementById("rememberMe").checked;
+
+            // Simple validation (Accept aiman/12345 as per screenshot implication or any valid input)
+            // The instruction says "If password and username is correct". Since no DB, hardcode one.
+            const validUser = "aiman";
+            const validPass = "12345";
+
+            if (user === validUser && pass === validPass) {
+                // Save to local storage if checked
+                if (remember) {
+                    localStorage.setItem("user", user);
+                    localStorage.setItem("pass", pass);
+                    localStorage.setItem("remember", "true");
+                } else {
+                    localStorage.removeItem("user");
+                    localStorage.removeItem("pass");
+                    localStorage.removeItem("remember");
+                }
+
+                // Redirect
+                window.location.href = "home.html";
+            } else {
+                alert("Invalid username or password (try aiman/12345)");
+            }
+        }
+    </script>
+</body>
+</html>

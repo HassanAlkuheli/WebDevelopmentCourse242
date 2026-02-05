@@ -1,0 +1,51 @@
+nav {
+  background-color: aquamarine;
+}
+
+nav li {
+  display: inline;
+  font-size: 24px;
+  margin: 10px;
+}
+
+article {
+  float: left;
+  width: 100%;
+  height: 500px;
+  background-color: antiquewhite;
+}
+
+aside {
+  float: left;
+  width: 20%;
+  height: 500px;
+  background-image: url('https://via.placeholder.com/200x500');
+  background-color: lightblue;
+  margin-left: -30%;
+  position: relative; /* Ensures it sits above if needed */
+}
+
+p {
+  padding: 10px;
+}
+
+section p {
+  display: none;
+}
+
+section:hover p {
+  display: block;
+}
+
+aside:hover li {
+  color: red;
+  font-size: large;
+}
+
+img {
+  width: 100px;
+}
+
+img:hover {
+  width: 200px;
+}

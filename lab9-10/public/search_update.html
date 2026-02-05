@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Search & Update</title>
+  <style>label{display:block;margin-top:8px} input,textarea{width:100%}</style>
+</head>
+<body>
+  <h2>Search & Update</h2>
+  <label>Title: <input id="title"></label>
+  <button onclick="search()">Search</button>
+
+  <div id="form" style="display:none">
+    <label>Description: <textarea id="description"></textarea></label>
+    <label>Price: <input id="price" type="number" step="0.01"></label>
+    <label>Category: <input id="cata" type="number"></label>
+    <label>Image URL: <input id="image"></label>
+    <button onclick="update()">Update</button>
+  </div>
+
+  <script>
+    let currentId = null;
+    async function search(){
+      const title = document.getElementById('title').value;
+      if (!title) return alert('enter title');
+      const res = await fetch('/books?name='+encodeURIComponent(title));
+      const arr = await res.json();
+      if (!arr.length) return alert('Not found');
+      const b = arr[0];
+      currentId = b.id;
+      document.getElementById('description').value = b.description;
+      document.getElementById('price').value = b.price;
+      document.getElementById('cata').value = b.cata;
+      document.getElementById('image').value = b.image;
+      document.getElementById('form').style.display = 'block';
+    }
+
+    async function update(){
+      const body = {
+        itemname: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        price: document.getElementById('price').value,
+        cata: document.getElementById('cata').value,
+        image: document.getElementById('image').value
+      };
+      const res = await fetch('/books/'+currentId,{method:'PUT', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+      const data = await res.json();
+      alert(JSON.stringify(data));
+    }
+  </script>
+</body>
+</html>

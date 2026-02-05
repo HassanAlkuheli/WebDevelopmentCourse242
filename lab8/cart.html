@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        input { padding: 5px; margin: 5px; }
+        table { border-collapse: collapse; width: 500px; margin-top: 20px; background-color: #ccc; }
+        th, td { border: 1px solid #999; padding: 5px; text-align: left; }
+        th { background-color: #aaa; }
+        .cart-container { border: 2px solid #999; display: inline-block; padding: 10px; background-color: #eee; }
+        h3 { margin-top: 0; }
+        img { width: 50px; height: 50px; object-fit: contain; }
+    </style>
+</head>
+<body>
+
+    <div>
+        Enter Book Name <input type="text" id="bookNameInput">
+        enter quantity <input type="number" id="qtyInput" value="1" min="1" style="width: 50px;">
+        <button onclick="addToCart()">Buy</button>
+    </div>
+
+    <div class="cart-container">
+        <h3>My Shopping Cart</h3>
+        <table id="cartTable">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Items go here -->
+            </tbody>
+        </table>
+        <button onclick="checkout()" style="margin-top: 10px;">Check out</button>
+    </div>
+
+    <script>
+        let booksData = [];
+
+        // Fetch data to access prices
+        fetch('books.txt')
+            .then(res => res.json())
+            .then(data => booksData = data);
+
+        function addToCart() {
+            const nameInput = document.getElementById('bookNameInput').value.trim();
+            const qty = parseInt(document.getElementById('qtyInput').value);
+
+            if (!nameInput) {
+                alert("Please enter a book name");
+                return;
+            }
+
+            // Find book to get price and image
+            const book = booksData.find(b => b.itemname.toLowerCase() === nameInput.toLowerCase());
+
+            if (book) {
+                const tableRef = document.getElementById('cartTable').getElementsByTagName('tbody')[0];
+                const newRow = tableRef.insertRow();
+
+                // Image
+                const cellImg = newRow.insertCell(0);
+                const img = document.createElement('img');
+                img.src = book.image;
+                cellImg.appendChild(img);
+
+                // Name
+                const cellName = newRow.insertCell(1);
+                cellName.innerText = book.itemname;
+
+                // Price
+                const cellPrice = newRow.insertCell(2);
+                cellPrice.className = "price"; // for checkout calculation
+                cellPrice.innerText = book.price;
+
+                // Quantity
+                const cellQty = newRow.insertCell(3);
+                cellQty.innerText = qty;
+
+                // Action (Delete)
+                const cellAction = newRow.insertCell(4);
+                const delBtn = document.createElement('button');
+                delBtn.innerText = "Delete";
+                delBtn.onclick = function() {
+                    // Delete row logic
+                    const row = this.parentNode.parentNode;
+                    row.parentNode.removeChild(row);
+                };
+                cellAction.appendChild(delBtn);
+
+            } else {
+                alert("Book not found in catalog!");
+            }
+        }
+
+        function checkout() {
+            const table = document.getElementById('cartTable');
+            let total = 0;
+            
+            // Loop through rows skipping header (starting from 1 in `rows` collection includes header, so careful)
+            // Better to use tbody rows
+            const rows = table.getElementsByTagName('tbody')[0].rows;
+
+            for (let i = 0; i < rows.length; i++) {
+                const price = parseFloat(rows[i].cells[2].innerText);
+                const qty = parseInt(rows[i].cells[3].innerText);
+                total += price * qty;
+            }
+
+            alert("you must pay" + total);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Book</title>
+    <!-- Simple styling to match screenshot -->
+    <style>
+        body { font-family: 'Times New Roman', serif; text-align: center; margin-top: 50px; }
+        .container { display: inline-block; text-align: left; }
+        select { font-size: 18px; padding: 5px; }
+        #result { margin-top: 20px; font-size: 20px; }
+        #bookImage { margin-top: 20px; max-width: 200px; display: none; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <label style="font-size: 24px;">Name: </label>
+        <select id="bookSelect" onchange="showDetail()">
+            <option value="">Select a book</option>
+        </select>
+        
+        <div id="result"></div>
+        <img id="bookImage" src="" alt="Book Image">
+    </div>
+
+    <script>
+        let booksData = [];
+
+        // 1. Get book details using Fetch API
+        fetch('books.txt')
+            .then(response => response.json())
+            .then(data => {
+                booksData = data;
+                const select = document.getElementById('bookSelect');
+                
+                // 2. Fill select option
+                data.forEach(book => {
+                    const option = document.createElement('option');
+                    option.value = book.price; // Value is price
+                    option.text = book.itemname; // Text is book name
+                    // We can store index or book object validation, but following strict instructions:
+                    // "Fill the select option value with the book price where the option text is the book name"
+                    // To show the name/image later, standard way is to look it up again or store data in attributes.
+                    // Since value is only price (which might be duplicate), lookup by name (text) is safer for details.
+                    option.dataset.name = book.itemname; 
+                    option.dataset.image = book.image;
+                    select.appendChild(option);
+                });
+            });
+
+        function showDetail() {
+            const select = document.getElementById('bookSelect');
+            const selectedOption = select.options[select.selectedIndex];
+            
+            if (selectedOption.value) {
+                const price = selectedOption.value;
+                const name = selectedOption.text;
+                const image = selectedOption.dataset.image;
+
+                // 3. Display book name and price
+                document.getElementById('result').textContent = `you have selected ${name} price: ${price}`;
+                
+                // 4. Show image
+                const img = document.getElementById('bookImage');
+                img.src = image;
+                img.style.display = 'block';
+            } else {
+                document.getElementById('result').textContent = '';
+                document.getElementById('bookImage').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

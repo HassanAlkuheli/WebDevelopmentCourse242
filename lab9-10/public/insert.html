@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Insert Book</title>
+  <style>label{display:block;margin-top:8px;} input,textarea{width:100%}</style>
+</head>
+<body>
+  <h2>Insert Book</h2>
+  <form id="insertForm">
+    <label>Title:<input id="itemname"></label>
+    <label>Description:<textarea id="description"></textarea></label>
+    <label>Price:<input id="price" type="number" step="0.01"></label>
+    <label>Category:<input id="cata" type="number"></label>
+    <label>Image URL:<input id="image" placeholder="enter image URL or paste the Freepik URL"></label>
+    <button type="submit">Send</button>
+  </form>
+  <div id="msg"></div>
+
+  <script>
+    document.getElementById('insertForm').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const body = {
+        itemname: document.getElementById('itemname').value,
+        description: document.getElementById('description').value,
+        price: document.getElementById('price').value,
+        cata: document.getElementById('cata').value,
+        image: document.getElementById('image').value
+      };
+      const res = await fetch('/books', {
+        method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      document.getElementById('msg').innerText = data.id ? 'Inserted id: '+data.id : JSON.stringify(data);
+    });
+  </script>
+</body>
+</html>

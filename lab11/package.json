@@ -1,0 +1,14 @@
+{
+  "name": "lab11",
+  "version": "1.0.0",
+  "main": "project.js",
+  "scripts": {
+    "start": "node project.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-session": "^1.18.1",
+    "mysql": "^2.18.1"
+  }
+}

@@ -1,0 +1,61 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Jumbotron simulation */
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: .3rem;
+}
+
+/* Gallery Hover Effect */
+.gallery-img {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.gallery-img:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+/* Staff Images */
+.staff-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Rounded images */
+    margin-bottom: 15px;
+    border: 5px solid #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: #0d6efd;
+    margin-bottom: 1rem;
+}
+
+/* Navbar customization to match blue theme */
+.navbar-custom {
+    background-color: #0d6efd;
+}
+.navbar-custom .navbar-brand, .navbar-custom .nav-link {
+    color: white;
+}
+.navbar-custom .nav-link:hover {
+    color: #ffd700;
+}
+
+section {
+    padding: 40px 0;
+}
+
+h2 {
+    margin-bottom: 30px;
+}

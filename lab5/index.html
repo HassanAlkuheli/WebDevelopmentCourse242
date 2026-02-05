@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aiman Pizza Shop</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f0fff0; /* Light greenish background */
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+            background-color: #f0fff0;
+            padding-bottom: 20px;
+        }
+        .header {
+            background-color: #3b6ea5; /* Blue header */
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .banner-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
+        .label-text {
+            width: 150px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        select, input[type="number"] {
+            padding: 5px;
+            font-size: 16px;
+        }
+        .prices-text {
+            margin-left: 10px;
+        }
+        .checkbox-group {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .buy-btn {
+            background-color: #d3d3d3;
+            border: 1px solid #a9a9a9;
+            padding: 5px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 150px; /* Align with inputs */
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">Aiman Pizza Shop</div>
+        
+        <!-- Using the requested image URL -->
+        <img src="https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg" alt="Pizza Shop" class="banner-img">
+
+        <div class="form-group">
+            <span class="label-text">Size</span>
+            <select id="DL1">
+                <option value="15">Small</option>
+                <option value="25">Medium</option>
+                <option value="35">Large</option>
+            </select>
+            <span class="prices-text">Large 35 SR Medium 25 SR Small 15 SR</span>
+        </div>
+
+        <div class="form-group">
+            <span class="label-text">Quantity</span>
+            <input type="number" id="TB1" value="1" min="1">
+        </div>
+
+        <div class="form-group">
+            <span class="label-text">Delivery</span>
+            <div class="checkbox-group">
+                <input type="checkbox" id="Ck1" value="yes"> Yes<br>
+                <span>5 SR Extra For Delivery</span>
+            </div>
+        </div>
+
+        <button class="buy-btn" onclick="calc()">Buy</button>
+
+        <div class="result" id="lbl">Total 0</div>
+    </div>
+
+    <script>
+        function calc() {
+            // 1. Get the Size Price
+            var size = parseInt(document.getElementById('DL1').value);
+            
+            // 2. Get the Quantity
+            var quant = parseInt(document.getElementById('TB1').value);
+            
+            // 3. Check Delivery
+            var del = 0;
+            var isChecked = document.getElementById('Ck1').checked;
+            
+            if (isChecked == true) {
+                del = 5;
+            }
+            
+            // 4. Calculate Total
+            var tot = (size * quant) + del;
+            
+            // 5. Display Result
+            document.getElementById('lbl').innerText = "Total " + tot;
+            
+            // Console log for debugging purposes as requested
+            console.log("Size: " + size);
+            console.log("Quantity: " + quant);
+            console.log("Delivery: " + del);
+            console.log("Total: " + tot);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Buy Book</title></head>
+<body>
+  <h2>Buy Book</h2>
+  <label>Choose book: <select id="bookSelect"></select></label>
+  <label>Quantity: <input id="qty" type="number" min="1" value="1"></label>
+  <button onclick="buy()">Buy</button>
+  <div id="result"></div>
+
+  <script>
+    async function load(){
+      const res = await fetch('/books');
+      const books = await res.json();
+      const sel = document.getElementById('bookSelect');
+      sel.innerHTML = '<option value="">--select--</option>';
+      books.forEach(b=>{
+        const opt = document.createElement('option');
+        opt.value = b.id;
+        opt.text = b.itemname + ' (Price: '+b.price+')';
+        opt.dataset.image = b.image;
+        sel.appendChild(opt);
+      });
+    }
+    async function buy(){
+      const id = document.getElementById('bookSelect').value;
+      const qty = document.getElementById('qty').value;
+      if (!id) return alert('select book');
+      const res = await fetch('/buy',{method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({id, quantity: qty})});
+      const data = await res.json();
+      document.getElementById('result').innerText = 'Total: '+data.total;
+    }
+    load();
+  </script>
+</body>
+</html>

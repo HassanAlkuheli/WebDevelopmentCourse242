@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 7 - jQuery Effects</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input[type="text"] {
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        #div1 {
+            display: none; /* Hidden initially for fadeIn effect */
+        }
+        button {
+            padding: 5px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        #div2 {
+            display: none; /* Hidden initially so we can toggle it open */
+        }
+        img {
+            width: 300px;
+            transform: rotate(-5deg);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Exercise 1: Input text converts to uppercase -->
+    <input type="text" id="nameInput" placeholder="Enter text">
+
+    <!-- Exercise 2: Div1 fades in -->
+    <div id="div1">
+        <h1>Welcome to my website</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel aliquid ren mollitia accusantium maiores soluta ipsum, eaque, error fugiat veniam</p>
+    </div>
+
+    <!-- Exercise 3: Button toggles Div2 -->
+    <button id="discountBtn">Show Discount</button>
+
+    <div id="div2">
+        <!-- Using a placeholder image similar to the 30% discount stamp -->
+        <img src="https://img.freepik.com/premium-vector/30-percent-discount-red-stamp-imprint_101664-81.jpg?w=360" alt="30% Discount">
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // 1. Converting to upper case letter when text is entered
+            $("#nameInput").on("input", function(){
+                $(this).val($(this).val().toUpperCase());
+            });
+
+            // 2. Show Div1 using fading in (On page load)
+            $("#div1").fadeIn(2000); // 2000ms = 2 seconds
+
+            // 3. Slide Toggle Div2 when show discount button is hit
+            $("#discountBtn").click(function(){
+                $("#div2").slideToggle("fast");
+            });
+        });
+    </script>
+
+</body>
+</html>

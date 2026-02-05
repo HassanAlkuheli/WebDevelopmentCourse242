@@ -1,0 +1,66 @@
+[
+    {
+        "itemname": "book1",
+        "description": "introduction to data science",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 100,
+        "cata": 1,
+        "author": "John Doe"
+    },
+    {
+        "itemname": "book2",
+        "description": "computer science book",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 200,
+        "cata": 2,
+        "author": "Jane Smith"
+    },
+    {
+        "itemname": "book3",
+        "description": "computer2 science book",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 400,
+        "cata": 1,
+        "author": "Alice Jones"
+    },
+    {
+        "itemname": "book4",
+        "description": "data science 2 book",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 300,
+        "cata": 1,
+        "author": "Bob Brown"
+    },
+    {
+        "itemname": "book5",
+        "description": "data science 3",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 150,
+        "cata": 1,
+        "author": "Charlie Davis"
+    },
+    {
+        "itemname": "book6",
+        "description": "computer systems",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 250,
+        "cata": 2,
+        "author": "Diana Evans"
+    },
+    {
+        "itemname": "book7",
+        "description": "data science 4",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 350,
+        "cata": 1,
+        "author": "Evan Foster"
+    },
+    {
+        "itemname": "book8",
+        "description": "computer networks",
+        "image": "https://img.freepik.com/free-photo/beautiful-tree-middle-field-covered-with-grass-with-tree-line-background_181624-29267.jpg",
+        "price": 450,
+        "cata": 2,
+        "author": "Fiona Green"
+    }
+]

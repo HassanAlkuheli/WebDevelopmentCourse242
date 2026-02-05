@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <style>
+        body { font-family: sans-serif; }
+        .container { width: 350px; margin: 0 auto; margin-top: 50px; }
+        h2 { border-bottom: 1px solid #999; line-height: 0.1em; margin: 10px 0 20px; }
+        h2 span { background:#fff; padding:0 10px; margin-left: 20px; }
+        .form-content { padding-left: 20px; border-left: 1px solid #999; }
+        label { display: block; margin-top: 20px; font-weight: bold; font-size: 18px; }
+        input[type="text"], input[type="password"] { width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; border: 1px solid #aaa; }
+        button { margin-top: 20px; padding: 5px 20px; cursor: pointer; background-color: #eee; border: 1px solid #999; font-size: 16px; border-radius: 3px; font-weight: bold; }
+        .chk-group { margin-top: 20px; margin-bottom: 10px; display: flex; align-items: center; }
+        .chk-group label { margin-top: 0; font-weight: normal; margin-left: 10px; }
+        input[type="checkbox"] { width: 20px; height: 20px; margin: 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><span>Registration</span></h2>
+        
+        <form onsubmit="return validate(event)">
+            <div class="form-content">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+
+                <label>Confirm Password</label>
+                <input type="password" id="confirm_password" placeholder="Re-ente password" required>
+
+                <div class="chk-group">
+                    <input type="checkbox" id="agree">
+                    <label for="agree">do you agree</label>
+                </div>
+
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function validate(e) {
+            var pass = document.getElementById("password").value;
+            var cpass = document.getElementById("confirm_password").value;
+            var agree = document.getElementById("agree");
+            var isValid = true;
+
+            // Clear previous styles/alerts handled by standard flow
+            agree.style.outline = "none";
+
+            // 1. Password Matching
+            if (pass !== cpass) {
+                alert("Passwords do not match");
+                e.preventDefault();
+                isValid = false;
+            }
+
+            // 2. Strong Password (at least 8 chars, 1 number, 1 uppercase)
+            // Example: Password123
+            var strongRegex = new RegExp("^(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+            if (isValid && !strongRegex.test(pass)) {
+                alert("Password is not strong.\nIt must contain at least 8 characters, including at least 1 number and 1 uppercase letter.");
+                e.preventDefault();
+                isValid = false;
+            }
+
+            // 3. Checkbox validation
+            if (isValid && !agree.checked) {
+                // Change color (outline) to red
+                agree.style.outline = "2px solid red";
+                alert("You must agree to continue.");
+                e.preventDefault();
+                isValid = false;
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>

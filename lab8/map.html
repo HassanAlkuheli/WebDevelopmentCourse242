@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Map</title>
+    <!-- Basic styling to ensure map has height -->
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h3>My Google Map</h3>
+    <div id="map"></div>
+
+    <!-- 
+      You need a valid API key for Google Maps to work properly.
+      Replace YOUR_API_KEY with an actual key.
+    -->
+    <script>
+        function initMap() {
+            // Location for Medinah (Taibah University area approximately) or arbitrary
+            const location = { lat: 24.4686, lng: 39.6142 }; 
+            
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 14,
+                center: location,
+            });
+
+            const marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "My Location"
+            });
+        }
+    </script>
+    
+    <!-- Async script execution -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+</body>
+</html>

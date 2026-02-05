@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- SweetAlert2 library -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body { font-family: sans-serif; }
+        fieldset { width: 300px; margin: 50px auto; padding: 20px; border-left: 1px solid #ccc; border-top: 1px solid #ccc; border: none; border-left: 2px solid #ccc; border-top: 1px solid #ccc; }
+        legend { font-size: 24px; font-weight: bold; border-bottom: 1px solid #ccc; width: 100%; margin-bottom: 20px; }
+        label { display: block; margin-top: 20px; font-weight: bold; font-size: 18px; }
+        input { width: 100%; box-sizing: border-box; padding: 8px; margin-top: 5px; border: 1px solid #aaa; }
+        button { margin-top: 30px; padding: 5px 20px; cursor: pointer; background-color: #eee; border: 1px solid #999; font-size: 16px; border-radius: 3px; font-weight: bold; }
+        a { display: block; margin-top: 15px; color: purple; text-decoration: none; font-size: 18px; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div style="width: 350px; margin: 0 auto; margin-top: 50px;">
+        <h2 style="border-bottom: 1px solid #999; line-height: 0.1em; margin: 10px 0 20px; "><span style="background:#fff; padding:0 10px; margin-left: 20px;">Login</span></h2>
+        
+        <div style="padding-left: 20px; border-left: 1px solid #999;">
+            <label>Username</label>
+            <input type="text" id="username" placeholder="Enter your username">
+            
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter password">
+            
+            <button onclick="login()">Submit</button>
+            <a href="register.html">Register new user</a>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            var user = document.getElementById("username").value;
+            var pass = document.getElementById("password").value;
+
+            // Change "Hassan" and "123" to match your name and pass as requested
+            if (user === "Hassan" && pass === "123") {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'Login Successful',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Wrong username or password!',
+                    showConfirmButton: false,
+                    timer: 2000 // 2 seconds
+                });
+            }
+        }
+    </script>
+</body>
+</html>
